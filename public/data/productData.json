@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "collection": "Laeng 92",
+      "introduction": "디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈",
+      "description": "척 70\n1970년대의 척테일러에서 영감 받은 척 70 컬렉션은 더욱 편안한 쿠셔닝과 견고한 캔버스 어퍼, 세련된 디테일을 더해 재해석되었습니다. 아이코닉한 디자인과 빈티지한 매력, 편안한 착화감을 동시에 선사하는 척 70 컬렉션과 함께 더욱 활기찬 일상을 맞이하세요.",
+      "id": 1,
+      "images": [
+        "https://postfiles.pstatic.net/MjAyMTAzMjlfMjk3/MDAxNjE3MDE1ODQ0MTUw.fuQUyHRewvrVDKcJLMpTIWeOxyRfgahKDdPuRiusEIAg.zUDYwQlrxIAPt7wi9sT2gcVGoFQYQWWSUke_mXGyReYg.PNG.maplesosser/image.png?type=w966",
+        "https://image.converse.co.kr/cmsstatic/product/170827C_170827C_02.jpg?browse=",
+        "https://image.converse.co.kr/cmsstatic/product/170827C_170827C_03.jpg?browse=",
+        "https://image.converse.co.kr/cmsstatic/product/170827C_170827C_09.jpg?browse=",
+        "https://image.converse.co.kr/cmsstatic/product/170827C_170827C_08.jpg?browse="
+      ],
+      "name": "척테일러 올스타 크레이터 서머 데이즈",
+      "price": "85000",
+      "related_collection": [
+        {
+          "id": 10,
+          "image": "https://image.converse.co.kr/cmsstatic/menu/12723/Flyout_256x300_01-7.jpg"
+        },
+        {
+          "id": 50,
+          "image": "https://image.converse.co.kr/cmsstatic/product/170463C_170463C_primary.jpg?browse"
+        },
+        {
+          "id": 22,
+          "image": "https://image.converse.co.kr/cmsstatic/menu/12723/Flyout_256x300_01-7.jpg"
+        }
+      ],
+      "size": ["230", "240", "250", "260"]
+    }
+  ]
+}
