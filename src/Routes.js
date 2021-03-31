@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import Main from './Pages/Main/Main';
@@ -12,18 +13,21 @@ import Footer from './Components/Footer/Footer';
 class Routes extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Nav />
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/detail" component={ProductDetail} />
-            <Route exact path="/cart" component={Cart} />
-          </Switch>
-          <Footer />
-        </Router>
-      </ThemeProvider>
+      <>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/detail" component={ProductDetail} />
+              <Route exact path="/cart" component={Cart} />
+            </Switch>
+            <Footer />
+          </Router>
+        </ThemeProvider>
+      </>
     );
   }
 }
