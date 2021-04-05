@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const CategoryList = [{ list: 'Women' }, { list: 'Men' }, { list: 'Kids' }, { list: 'Collection' }];
 
-const Nav = () => {
+function Nav() {
+  const handlelogOut = () => {
+    const { Kakao } = window;
+    Kakao.Auth.logout();
+    localStorage.removeItem('conconsong_token');
+  };
+
   return (
     <Header>
       <NavContainer>
@@ -21,7 +27,13 @@ const Nav = () => {
         <Utility>
           <MenuContainer>
             <Menu>
-              <Link to="/login">Sign In</Link>
+              {localStorage.conconsong_token ? (
+                <Link to="/" onClick={handlelogOut}>
+                  Log Out
+                </Link>
+              ) : (
+                <Link to="/login">Sign In</Link>
+              )}
             </Menu>
             <Menu>
               <i class="far fa-user" />
@@ -44,10 +56,10 @@ const Nav = () => {
       </NavContainer>
     </Header>
   );
-};
+}
 
 const Header = styled.header`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -112,4 +124,4 @@ const Utility = styled.aside`
   }
 `;
 
-export default Nav;
+export default withRouter(Nav);
