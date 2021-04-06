@@ -9,6 +9,7 @@ import ProductDetail from './Pages/ProductDetail/ProductDetail';
 import Cart from './Pages/Cart/Cart';
 import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
+import SearchResult from './Pages/SearchResult/SearchResult';
 
 class Routes extends Component {
   render() {
@@ -22,6 +23,7 @@ class Routes extends Component {
               <Route exact path="/main" component={Main} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/product/:id" component={ProductDetail} />
+              <Route exact path="/searchResult" component={SearchResult} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
             <Footer />

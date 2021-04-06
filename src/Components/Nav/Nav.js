@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
+import FilterModal from './FilterModal';
 
 const CategoryList = [{ list: 'Women' }, { list: 'Men' }, { list: 'Kids' }, { list: 'Collection' }];
 
@@ -10,11 +11,16 @@ function Nav() {
     Kakao.Auth.logout();
     localStorage.removeItem('conconsong_token');
   };
+  const [isFilterModal, setIsFilterModal] = useState(false);
+
+  const getModalStatus = () => {
+    setIsFilterModal(false);
+  };
 
   return (
     <Header>
       <NavContainer>
-        <Link to="/">
+        <Link to="/main">
           <img alt="logo" src="https://media.vlpt.us/images/lang/post/faa320b6-4551-4dd6-ae80-15edd5803fb2/astro-space.png" />
         </Link>
         <Category>
@@ -28,7 +34,7 @@ function Nav() {
           <MenuContainer>
             <Menu>
               {localStorage.conconsong_token ? (
-                <Link to="/" onClick={handlelogOut}>
+                <Link to="/main" onClick={handlelogOut}>
                   Log Out
                 </Link>
               ) : (
@@ -47,13 +53,19 @@ function Nav() {
               </Link>
             </Menu>
             <Menu>
-              <button onClick={() => alert('검색 기능은 없습니다')}>
-                <i class="fas fa-search"></i>
-              </button>
+              <Button isFilterModal={isFilterModal} onClick={() => setIsFilterModal(!isFilterModal)}>
+                <BtnText isFilterModal={isFilterModal}>검색</BtnText>
+                <SearchIcon>
+                  <i class="fas fa-search"></i>
+                </SearchIcon>
+              </Button>
             </Menu>
           </MenuContainer>
         </Utility>
       </NavContainer>
+      <FilterModalContainer isFilterModal={isFilterModal}>
+        <FilterModal getModalStatus={getModalStatus} />
+      </FilterModalContainer>
     </Header>
   );
 }
@@ -73,7 +85,7 @@ const NavContainer = styled.div`
   align-items: center;
   max-width: 1440px;
   height: 60px;
-  margin: 0 48px;
+  margin: 0;
   padding-left: 20px;
 
   a {
@@ -108,20 +120,59 @@ const Menu = styled.li`
 `;
 
 const Utility = styled.aside`
-  width: 40%;
+  width: 70%;
   display: flex;
   justify-content: flex-end;
+`;
 
-  button {
-    width: 60px;
-    height: 60px;
-    border: none;
-    background-color: black;
-
-    svg {
-      color: white;
-    }
+const Button = styled.button`
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-color: black;
+  transition: 400ms;
+  ${({ isFilterModal }) =>
+    isFilterModal &&
+    `
+    width: 220px;
+  `}
+  svg {
+    color: white;
   }
+`;
+
+const BtnText = styled.span`
+  color: white;
+  text-align: left;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  transition: 400ms;
+  ${({ isFilterModal }) =>
+    isFilterModal === false &&
+    `
+    opacity:0;
+  `};
+`;
+
+const SearchIcon = styled.div`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+`;
+
+const FilterModalContainer = styled.div`
+  opacity: 0;
+  width: 100%;
+  height: 0;
+  ${({ isFilterModal }) =>
+    isFilterModal &&
+    `
+    transition: 500ms;
+    opacity: 1;
+    height: 100%
+    `}
 `;
 
 export default withRouter(Nav);
