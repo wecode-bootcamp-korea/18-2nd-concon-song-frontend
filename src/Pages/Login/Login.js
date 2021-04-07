@@ -7,6 +7,7 @@ import { CCS_KAKAO_LOGIN_API } from '../../config';
 class Login extends Component {
   kakaoLoginHandler = () => {
     const { Kakao } = window;
+    const self = this;
 
     Kakao.Auth.login({
       success: function (authObj) {
@@ -19,16 +20,17 @@ class Login extends Component {
           .then(res => res.json())
           .then(res => {
             localStorage.setItem('conconsong_token', res.conconsong_token);
+
+            if (localStorage.setItem) {
+              alert('로그인 성공!');
+              self.props.history.push('/');
+            }
           });
       },
       fail: function (err) {
         alert(JSON.stringify(err));
       },
     });
-    if (localStorage.conconsong_token) {
-      alert('로그인 성공!');
-      this.props.history.push('/');
-    }
   };
 
   render() {
