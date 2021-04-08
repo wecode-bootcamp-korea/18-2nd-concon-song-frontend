@@ -23,7 +23,7 @@ class Login extends Component {
 
             if (localStorage.setItem) {
               alert('로그인 성공!');
-              self.props.history.push('/');
+              self.props.history.push('/main');
             }
           });
       },
