@@ -9,15 +9,14 @@ function RecommendList({ product, product: { related_collection, collection } })
     const endPoint = e.target.id;
     history.push(`/product/${endPoint}`);
   };
-
   return (
     <Recommends>
       <div className="collectionTitle">Collection : {collection}</div>
       <div className="collectionImage">
-        {related_collection &&
-          related_collection.map((item, idx) => {
-            return <CollectionImg className="recommendImage" onClick={handleCollection} key={idx} src={item.image} alt="collectImg" id={item.id} />;
-          })}
+        {related_collection.length &&
+          related_collection.map((item, idx) => (
+            <CollectionImg onClick={handleCollection} key={idx} src={item.image} alt="collectImg" id={item.id} />
+          ))}
       </div>
     </Recommends>
   );
@@ -42,7 +41,7 @@ const Recommends = styled.div`
 
 const CollectionImg = styled.img`
   width: 100%;
-  height: 100%;
+  height: 250px;
   cursor: pointer;
 `;
 

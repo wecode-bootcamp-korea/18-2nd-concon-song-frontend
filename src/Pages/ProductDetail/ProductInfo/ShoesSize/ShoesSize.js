@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ShoesModal from './ShoesModal.js/ShoesModal';
+import { API } from '../../../../config';
 
 function ShoesSize({ product, product: { size, id } }) {
   const [modal, setModal] = useState(false);
   const [count, setCount] = useState(1);
-  const [isLogin, setLogin] = useState(true);
+  const [isLogin, setLogin] = useState(false);
   const [sizeClick, setClick] = useState(0);
   const [shoesSize, setShoesSize] = useState(230);
+  const history = useHistory();
   // moreRef = React.createRef();
+
+  useEffect(() => {
+    localStorage.conconsong_token && setLogin(true);
+  }, []);
 
   const handleDecrement = () => {
     setCount(count < 1 ? 0 : count - 1);
@@ -38,14 +45,11 @@ function ShoesSize({ product, product: { size, id } }) {
   };
 
   const handleLogin = () => {
-    this.props.history.push('/login');
+    history.push('/login');
   };
 
   const handleCart = () => {
-    console.log('아이디', id);
-    console.log(shoesSize);
-    console.log(count);
-    fetch(`http://10.58.5.237:8000/order/product/1`, {
+    fetch(`${API}/order/product/1`, {
       method: 'POST',
       headers: {
         Authorization: localStorage.conconsong_token,
@@ -55,15 +59,9 @@ function ShoesSize({ product, product: { size, id } }) {
         size_id: sizeClick,
         quantity: count,
       }),
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
+    }).then(res => res.json());
 
-    if (window.confirm('장바구니로 이동 하시겠습니까?')) {
-      this.props.history.push({
-        pathname: '/cart',
-      });
-    }
+    window.confirm('장바구니에 담았습니다. 장바구니로 이동하시겠습니까?') && history.push('/cart');
   };
 
   return (

@@ -110,6 +110,7 @@ const FeedImage = styled.div`
   }
 
   .hoverOff {
+    display: none;
     width: 100%;
     height: 250px;
     .feedContent,

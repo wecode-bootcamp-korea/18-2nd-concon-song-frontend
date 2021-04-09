@@ -37,7 +37,7 @@ function ProductContainer({ handleStar, product, product: { name, id, descriptio
           )}
         </DetailBox>
       </SubContainer>
-      <RecommendBoard product={product} />
+      {product.length !== 0 && <RecommendBoard product={product} />}
       <Community />
     </Products>
   );

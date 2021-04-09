@@ -28,7 +28,7 @@ const CartList = ({ cartItem, handleCount, handlePlus, handleMinus, handleDelete
           </>
         )}
       </CartContainer>
-      <CartClearBtn onClick={() => deleteAll()}>장바구니 비우기</CartClearBtn>
+      {cartItem.length !== 0 && <CartClearBtn onClick={() => deleteAll()}>장바구니 비우기</CartClearBtn>}
     </Container>
   );
 };
