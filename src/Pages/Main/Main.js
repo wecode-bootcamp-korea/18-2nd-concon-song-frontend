@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Product from './Components/Product';
+import { API } from '../../config';
 
 function Main() {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ function Main() {
   const LIMIT = 8;
 
   useEffect(() => {
-    fetch(`data/mainData.json`)
+    fetch(`${API}/product${filterQuery}`)
       .then(res => res.json())
       .then(res => {
         setProducts(res.product);
@@ -22,9 +23,9 @@ function Main() {
         setSizeList(res.filter_detail[0].size);
         setCollectionList(res.filter_detail[0].collection);
       });
-    window.addEventListener('scroll', infiniteScroll);
-    return () => window.addEventListener('scroll', infiniteScroll);
-  }, [offset]);
+    // window.addEventListener('scroll', infiniteScroll);
+    // return () => window.addEventListener('scroll', infiniteScroll);
+  }, [filter]);
 
   // useEffect(() => {
   //   fetch(`http://10.58.7.145:8000/product${query}`)
@@ -45,15 +46,15 @@ function Main() {
       : setFilter(filter.filter(data => data[type] !== e.target.getAttribute('name')));
   };
 
-  const infiniteScroll = () => {
-    const { documentElement, body } = document;
+  // const infiniteScroll = () => {
+  //   const { documentElement, body } = document;
 
-    const scrollHeight = Math.max(documentElement.scrollHeight, body.scrollHeight);
-    const scrollTop = Math.max(documentElement.scrollTop, body.scrollTop);
-    const clientHeight = documentElement.clientHeight;
+  //   const scrollHeight = Math.max(documentElement.scrollHeight, body.scrollHeight);
+  //   const scrollTop = Math.max(documentElement.scrollTop, body.scrollTop);
+  //   const clientHeight = documentElement.clientHeight;
 
-    scrollTop + clientHeight > scrollHeight - 378 && setOffset(offset + 1);
-  };
+  //   scrollTop + clientHeight > scrollHeight - 378 && setOffset(offset + 1);
+  // };
 
   const colors = filter.filter(data => data.color).map(data => data.color);
   const sizes = filter.filter(data => data.size).map(data => Number(data.size));
@@ -61,13 +62,10 @@ function Main() {
   const filterQuery = filter.reduce(
     (a, b) =>
       a + `${Object.keys(b)}_id=${Object.keys(b)[0] === 'color' ? colorList.indexOf(Object.values(b)[0]) + 1 : Number(Object.values(b)) + 1}&`,
-    ''
+    '?'
   );
   const scrollQuery = `&limit=${LIMIT}&offset=${offset}`;
-  const query = filterQuery
-    ? `?${filterQuery.slice(0, filterQuery.length - 1)}${scrollQuery}`
-    : `${filterQuery.slice(0, filterQuery.length - 1)}${scrollQuery}`;
-  console.log(query);
+  const query = filterQuery ? `?${filterQuery.slice(0, filterQuery.length - 1)}${scrollQuery}` : `${scrollQuery}`;
   return (
     <MainContainer>
       <MainImg />
@@ -78,7 +76,7 @@ function Main() {
             <i class="fas fa-sort-amount-down" />
           </HideIcon>
         </HideFilter>
-        <TotalResults>{products.length} Results</TotalResults>
+        {/* <TotalResults>{products.length} Results</TotalResults> */}
       </FilterHeader>
       <ListContainer>
         <FilterList isFilter={isFilter}>

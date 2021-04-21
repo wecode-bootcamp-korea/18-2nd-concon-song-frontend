@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
+import { API } from '../../config';
 
 function FilterModal({ getModalStatus }) {
   const history = useHistory();
   const [productList, setProductList] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState([]);
-
   const handleFilterProduct = e => {
     setFilteredProduct(productList.filter(product => product.name.indexOf(e.target.value) !== -1));
     e.target.value === '' && setFilteredProduct([]);
   };
-
   useEffect(() => {
-    fetch('data/khData.json')
+    fetch(`${API}/product`)
       .then(res => res.json())
       .then(res => setProductList(res.product));
   }, []);
@@ -22,15 +21,9 @@ function FilterModal({ getModalStatus }) {
     getModalStatus(false);
     history.push('/searchResult');
   };
-
   return (
     <ModalContainer>
-      <Pic>
-        <ModalImg
-          alt="modal image"
-          src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1608&q=80"
-        />
-      </Pic>
+      <Pic />
       <Filter>
         <SearchTitle>검색</SearchTitle>
         <FilterInputContainer>
@@ -52,21 +45,22 @@ function FilterModal({ getModalStatus }) {
     </ModalContainer>
   );
 }
-
 const ModalContainer = styled.div`
   display: flex;
+  width: 1440px;
 `;
-
 const Pic = styled.div`
+  width: 40%;
   height: 400px;
   border: 2px solid black;
   background-color: white;
+  background: url('https://images.unsplash.com/photo-1607522370275-f14206abe5d3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1608&q=80')
+    no-repeat;
+  background-size: 104%;
 `;
-
-const ModalImg = styled.img`
-  height: 100%;
-`;
-
+// const ModalImg = styled.img`
+//   height: 100%;
+// `;
 const Filter = styled.div`
   position: relative;
   display: flex;
@@ -77,14 +71,12 @@ const Filter = styled.div`
   border: 2px solid black;
   border-left: none;
 `;
-
 const SearchTitle = styled.span`
   position: absolute;
   top: 80px;
   right: 74%;
   font-size: 35px;
 `;
-
 const FilterInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -93,7 +85,6 @@ const FilterInputContainer = styled.div`
   top: 40%;
   width: 60%;
 `;
-
 const FilterInput = styled.input`
   width: 100%;
   height: 60px;
@@ -102,7 +93,6 @@ const FilterInput = styled.input`
   border-bottom: 2px solid black;
   font-size: 20px;
 `;
-
 const SearchIconBtn = styled.button`
   position: absolute;
   right: 15px;
@@ -110,13 +100,11 @@ const SearchIconBtn = styled.button`
   background-color: inherit;
   font-size: 18px;
 `;
-
 const FilterResult = styled.div`
   position: absolute;
   top: 55%;
   width: 60%;
   font-size: 18px;
-
   p {
     height: 30px;
     padding: 15px;
@@ -124,5 +112,4 @@ const FilterResult = styled.div`
     color: black;
   }
 `;
-
 export default FilterModal;

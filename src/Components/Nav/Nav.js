@@ -85,8 +85,7 @@ const NavContainer = styled.div`
   align-items: center;
   max-width: 1440px;
   height: 60px;
-  margin: 0;
-  padding-left: 20px;
+  margin: 0 auto;
 
   a {
     img {
@@ -163,12 +162,15 @@ const SearchIcon = styled.div`
 `;
 
 const FilterModalContainer = styled.div`
-  opacity: 0;
-  width: 100%;
+  visibility: hidden;
+  max-width: 1440px;
   height: 0;
+  margin: 0 auto;
+  opacity: 0;
   ${({ isFilterModal }) =>
     isFilterModal &&
     `
+    visibility: visible;
     transition: 500ms;
     opacity: 1;
     height: 100%

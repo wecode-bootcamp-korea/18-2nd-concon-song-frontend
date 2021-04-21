@@ -17,6 +17,7 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(res => setCartItem(res.cartItem));
+    window.scrollTo(0, 0);
   }, []); // 배열 안의 인자 값 상태가 바뀌었을 때만, 첫번째 인자인 ()콜백 함수 호출
 
   // 아이템 삭제
@@ -39,7 +40,6 @@ const Cart = () => {
       e.target.value = 5;
     }
     setCount(Number(e.target.value));
-    console.log(e.target.value);
   };
 
   const handlePlus = item => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ScrollToTop from './Scroll';
 import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
@@ -18,11 +19,13 @@ class Routes extends Component {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Router>
+            <ScrollToTop />
             <Nav />
             <Switch>
               <Route exact path="/main" component={Main} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/product/:id" component={ProductDetail} />
+              <Route exact path="/product" component={ProductDetail} />
               <Route exact path="/searchResult" component={SearchResult} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
