@@ -1,40 +1,60 @@
 # 🍉 Team ConCon-Song
 
+- React로 구현한 신발 판매 사이트
+
 - 프로젝트 기간 : 2021년 3월 29일 ~ 2021년 4월 9일
   <br>
 
-## 🍕 FrontEnd
-
-- 김현중
-- 박경현
-- 송다혜 (PM)
-- 홍래영
-  <br>
-
-## 🧀 BackEnd
-
-- 이수진
-- 정수빈
+## 📌 Team
+|[[FE] 김현중](https://github.com/hyjoong)|[[FE] 박경현](https://github.com/pikatropika)|[[FE] 송다혜](https://github.com/SongDye1)|[[FE] 홍래영](https://github.com/lang92)|[[BE] 이수진](https://github.com/S2-J1NG)|[[BE] 정수빈](https://github.com/jadyJeong)
+|:----:|:-----:|:----:|:----:|:----:|:----:|
+|<img src="https://avatars.githubusercontent.com/u/70426440?v=4" alt="avatar" height="150px" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/76834744?v=4" alt="avatar" height="150px" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/63221633?v=4" alt="avatar" height="150px" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/74031598?v=4" alt="avatar" height="150px" width="150px" />| <img src="https://avatars.githubusercontent.com/u/53987183?v=4" alt="avatar" height="150px" width="150px" />| <img src="https://avatars.githubusercontent.com/u/61091132?v=4" alt="avatar" height="150px" width="150px" />|
+ 
   <br>
   <br>
-
-# 🥑 팀원 별 담당 기능
-
-- **김현중** : 상품 디테일
-- **박경현** : 소셜 로그인 기능
-- **송다혜** : 장바구니 기능
-- **홍래영** : 메인 페이지 / 상품 리스트
- <br>
-
+  
+  
 # 🥕 FrontEnd 기술 스택
 
-- React
-- HTML / CSS
+- React / React Hooks
+- Styled Components
 - Javascript
 - React Router
-- Sass
+- Sass 
+
+
+
+# 🥑 구현 기능
+
+ ### 김현중 
+##### 상품 디테일 페이지 
+- 상품 정보
+  - '장바구니' 버튼 클릭시 fetch 함수를 통해 백엔드에 상품 정보 전달 
+- 인스타 피드 
+  - JavaScript를 이용하여 캐러셀 기능 직접 구현
+  - 더보기 버튼 누를시 상품 데이터 추가로 8개 받아오게 구현
+
+ ### 박경현
+- 카카오 소셜로그인
+  - OAuth2.0 기반 카카오 로그인 API 연동
+- 컴포넌트, 함수 재사용을 통한 상품 검색 모달창 구현
+
+ ### 송다혜 
+ ##### 장바구니 페이지
+ - 장바구니 아이템 삭제 기능 구현
+ - 장바구니 수량, 개수에 따라 가격 변화 구현
+ 
+ ### 홍래영
+ ##### 메인 페이지 / 상품 리스트
+ - 메인페이지에 상품 나열
+ - 필티렁 기능으로 상품의 색상, 컬렉션에 따라 상품 나열 
+ <br>
+
+
+
   <br>
   <br>
+  
   > 🍩 팀원별 GitHub 주소
 - 김현중 : [김현중 GitHub](https://github.com/hyjoong)
 - 박경현 : [박경현 GitHub](https://github.com/pikatropika)
