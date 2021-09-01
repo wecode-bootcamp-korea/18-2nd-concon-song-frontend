@@ -5,11 +5,21 @@ import styled, { css, keyframes } from 'styled-components';
 function Product({ product: { id, name, price, image } }) {
   const [isFavorite, setFavorite] = useState(false);
   const history = useHistory();
+
   const toDetail = e => {
     const { localName } = e.target;
     if (localName === 'svg' || localName === 'path' || localName === 'button') return;
     else history.push(`/product/${id}`);
   };
+
+  const loves = [];
+  for (let i = 0; i <= 4; i++) {
+    loves.push(
+      <WishSuccess key={i} isFavorite={isFavorite}>
+        LOVE IT
+      </WishSuccess>
+    );
+  }
 
   return (
     <ProductContainer onClick={toDetail}>
@@ -18,11 +28,7 @@ function Product({ product: { id, name, price, image } }) {
       <AddFavorite isFavorite={isFavorite} onClick={() => setFavorite(!isFavorite)}>
         <i className="fas fa-heart" />
       </AddFavorite>
-      <WishSuccess isFavorite={isFavorite}>LOVE IT</WishSuccess>
-      <WishSuccess isFavorite={isFavorite}>LOVE IT</WishSuccess>
-      <WishSuccess isFavorite={isFavorite}>LOVE IT</WishSuccess>
-      <WishSuccess isFavorite={isFavorite}>LOVE IT</WishSuccess>
-      <WishSuccess isFavorite={isFavorite}>LOVE IT</WishSuccess>
+      {loves}
       <InfoContainer>
         <Info>{name}</Info>
         <Info>{Number(price).toLocaleString()} 원</Info>

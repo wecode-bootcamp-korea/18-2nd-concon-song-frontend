@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import Product from './Components/Product';
 import { API } from '../../config';
 
+const CAROUSELS = [
+  { id: 0, url: 'https://www.converse.co.kr/image/banner/16207973420.jpg' },
+  { id: 1, url: 'https://www.converse.co.kr/image/banner/16202643640.jpg' },
+  { id: 2, url: 'https://www.converse.co.kr/image/banner/16202644000.jpg' },
+];
+
 function Main() {
+  const [carousel, setCarousel] = useState(0);
   const [products, setProducts] = useState([]);
   const [isFilter, setIsFilter] = useState(true);
   const [filter, setFilter] = useState([]);
@@ -15,7 +22,8 @@ function Main() {
   const LIMIT = 8;
 
   useEffect(() => {
-    fetch(`${API}/product${filterQuery}`)
+    // fetch(`${API}/product${filterQuery}`)
+    fetch('data/mainData.json')
       .then(res => res.json())
       .then(res => {
         setProducts(res.product);
@@ -37,6 +45,18 @@ function Main() {
   //       setCollectionList(res.filter_detail[0].collection);
   //     });
   // }, [filter]);
+
+  // setInterval(setCarousel(carousel + 1), 3000);
+
+  const handleCarousel = e => {
+    const carousels = document.getElementsByClassName('carousel');
+    setCarousel(e.target.id);
+
+    for (let i = 0; i < carousels.length; i++) {
+      carousels[i].style.transform = `translateX(-${100 * Number(e.target.id)}%)`;
+      carousels[i].style.transition = '500ms';
+    }
+  };
 
   const handleFilter = e => {
     const type = e.target.getAttribute('type');
@@ -66,9 +86,19 @@ function Main() {
   );
   const scrollQuery = `&limit=${LIMIT}&offset=${offset}`;
   const query = filterQuery ? `?${filterQuery.slice(0, filterQuery.length - 1)}${scrollQuery}` : `${scrollQuery}`;
+
   return (
     <MainContainer>
-      <MainImg />
+      <ImgContainer>
+        {CAROUSELS.map(carousels => (
+          <MainImg key={carousels.id} className="carousel" src={carousels.url} />
+        ))}
+        <BtnContainer>
+          {CAROUSELS.map(carousels => (
+            <CarouselBtn key={carousels.id} id={carousels.id} onClick={handleCarousel} carousel={carousel} />
+          ))}
+        </BtnContainer>
+      </ImgContainer>
       <FilterHeader>
         <HideFilter isFilter={isFilter} onClick={() => setIsFilter(!isFilter)}>
           <HideText isFilter={isFilter}>Hide Filters</HideText>
@@ -130,12 +160,57 @@ const MainContainer = styled.section`
   padding-top: 81px;
 `;
 
-const MainImg = styled.img.attrs({
-  src: 'https://image.converse.co.kr/cmsstatic/structured-content/18929/01_Home_04_Template_1440x900_Big.jpg?gallery',
-  alt: '메인사진',
-})`
+const ImgContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
   width: 100%;
-  height: 700px;
+  cursor: pointer;
+`;
+
+// const MainImg = styled.img.attrs({
+//   src: 'https://www.converse.co.kr/image/banner/16202644000.jpg',
+//   alt: '메인사진',
+// })`
+//   width: 100%;
+//   height: 700px;
+// `;
+
+const MainImg = styled.img`
+  max-width: 100%;
+  height: 100%;
+`;
+
+const BtnContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 35px;
+  background-color: gray;
+  border-radius: 20px;
+  opacity: 0.5;
+`;
+
+const CarouselBtn = styled.span`
+  width: 20px;
+  height: 20px;
+  margin: auto 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  transition: 200ms;
+
+  &:hover {
+    background-color: black;
+    transform: scale(1.2);
+  }
+
+  ${({ carousel, id }) => +carousel === id && `background-color: black`};
 `;
 
 const FilterHeader = styled.div`

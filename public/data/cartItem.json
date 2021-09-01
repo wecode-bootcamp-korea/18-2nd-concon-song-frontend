@@ -2,7 +2,7 @@
   "cartItem": [
     {
       "id": 1,
-      "img": "https://image.converse.co.kr/cmsstatic/product/162050C_162050C_hover.jpg?browse",
+      "img": "//www.converse.co.kr/web/product/medium/202104/4eacadf5801d379bbb9322e67009e55b.jpg",
       "name": "척 70 클래식",
       "color": "블랙",
       "size": 275,
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "img": "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_hover.jpg?browse",
+      "img": "//www.converse.co.kr/web/product/small/202104/65efa623c2a1a6050fe891bd448fd1e1.jpg",
       "name": "척테일러 올스타 리프트 캔버스",
       "color": "화이트",
       "size": 275,
@@ -20,7 +20,7 @@
     },
     {
       "id": 3,
-      "img": "https://image.converse.co.kr/cmsstatic/product/M9621C_M9621C_hover.jpg?browse",
+      "img": "//www.converse.co.kr/web/product/medium/202104/f37ae7714e2132b5f7315729aeaed29b.jpg",
       "name": "척 테일러 올스타 클래식",
       "color": "블랙",
       "size": 275,
